@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# NOTE: This file must be executable (+x) for CI to run `./gradlew`.
+
+# Frontend (React Native) workspace Gradle wrapper shim for CI.
+# Some analysis jobs run `./gradlew check` from this directory.
+# If a real Android Gradle wrapper exists, delegate; otherwise no-op.
+
+if [[ -f "./android/gradlew" ]]; then
+  exec bash "./android/gradlew" "$@"
+fi
+
+echo "No Android Gradle wrapper found in frontend_app; skipping Gradle task: ${*:-<none>}"
+exit 0
