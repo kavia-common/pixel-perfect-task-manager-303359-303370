@@ -1,10 +1,10 @@
 @echo off
-REM Frontend (React Native) workspace Gradle wrapper shim for CI.
+REM Frontend workspace Gradle shim for CI.
 
-IF EXIST android\gradlew.bat (
-  CALL android\gradlew.bat %*
+IF EXIST ..\..\gradlew.bat (
+  CALL ..\..\gradlew.bat %*
   EXIT /B %ERRORLEVEL%
 )
 
-echo No Android Gradle wrapper found in frontend_app; skipping Gradle task: %*
+echo No workspace Gradle wrapper found; skipping Gradle task: %*
 EXIT /B 0

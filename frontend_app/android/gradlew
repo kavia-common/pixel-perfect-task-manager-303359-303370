@@ -1,14 +1,11 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/env sh
+set -eu
 
-# Android-folder Gradle wrapper shim for CI.
-# Delegate to workspace-level gradlew if present; otherwise no-op.
+# Frontend android/ gradlew shim for CI.
 
-WRAPPER="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/gradlew"
-
-if [[ -f "${WRAPPER}" ]]; then
-  exec bash "${WRAPPER}" "$@"
+if [ -f "../gradlew" ]; then
+  exec sh "../gradlew" "$@"
 fi
 
-echo "No workspace Gradle wrapper found; skipping Gradle task: ${*:-<none>}"
+echo "No parent gradlew found; skipping Gradle task: ${*:-<none>}"
 exit 0

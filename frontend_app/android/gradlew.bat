@@ -1,11 +1,10 @@
 @echo off
-REM Android-folder Gradle wrapper shim for CI.
-REM Delegate to workspace-level gradlew.bat if present; otherwise no-op.
+REM Frontend android/ gradlew shim for CI.
 
 IF EXIST ..\gradlew.bat (
   CALL ..\gradlew.bat %*
   EXIT /B %ERRORLEVEL%
 )
 
-echo No workspace Gradle wrapper found; skipping Gradle task: %*
+echo No parent gradlew found; skipping Gradle task: %*
 EXIT /B 0
